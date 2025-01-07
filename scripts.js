@@ -1,9 +1,8 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () { 
     // Menu Button
     const menuButton = document.getElementById("menu-button");
     const menuOptions = document.getElementById("menu-options");
     menuButton.addEventListener("click", function () {
-        console.log("Menu button clicked"); // Debug log
         menuOptions.style.display = menuOptions.style.display === "block" ? "none" : "block";
     });
 
@@ -19,7 +18,6 @@ document.addEventListener("DOMContentLoaded", function () {
     Object.keys(tabButtons).forEach(buttonId => {
         const tabId = tabButtons[buttonId];
         document.getElementById(buttonId).addEventListener("click", function () {
-            console.log(`${buttonId} clicked`); // Debug log
             // Hide all tabs
             document.querySelectorAll(".tab-content").forEach(tab => tab.style.display = "none");
             // Show the clicked tab
@@ -27,27 +25,28 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Show donation amount field when "Cash Assistance" is selected
-    const donationTypeSelect = document.getElementById('donation-type');
-    const donationAmountField = document.getElementById('donation-amount');
+    // Handle location toggle
+    const locationToggleButton = document.getElementById("location-toggle-button");
+    const mapFrame = document.getElementById("map-frame");
 
-    // Update visibility of donation amount field based on selected donation type
-    donationTypeSelect.addEventListener('change', function () {
-        if (donationTypeSelect.value === 'cash-assistance') {
-            donationAmountField.style.display = 'block';
+    locationToggleButton.addEventListener("click", function() {
+        if (locationToggleButton.innerText === "Switch to My Location") {
+            // Check if the browser supports geolocation
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    const lat = position.coords.latitude;
+                    const lng = position.coords.longitude;
+                    // Update map iframe src with user's location
+                    mapFrame.src = `https://storage.googleapis.com/maps-solutions-plhwtgox7c/locator-plus/ttjf/locator-plus.html?lat=${lat}&lng=${lng}&zoom=12`;
+                    locationToggleButton.innerText = "Switch to NYC"; // Update button text
+                });
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
         } else {
-            donationAmountField.style.display = 'none';
+            // Switch back to NYC location
+            mapFrame.src = "https://storage.googleapis.com/maps-solutions-plhwtgox7c/locator-plus/ttjf/locator-plus.html?lat=40.7128&lng=-74.0060&zoom=12";
+            locationToggleButton.innerText = "Switch to My Location"; // Update button text
         }
-    });
-
-    // Volunteer form handling
-    const volunteerForm = document.getElementById('volunteer-form');
-    const volunteerSubmitButton = document.getElementById('volunteer-submit');
-
-    volunteerSubmitButton.addEventListener("click", function (event) {
-        event.preventDefault();
-        const volunteerData = new FormData(volunteerForm);
-        console.log("Volunteer data submitted", Object.fromEntries(volunteerData.entries())); // Debug log
-        alert("Thank you for your interest in volunteering!");
     });
 });
