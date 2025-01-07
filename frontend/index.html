@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' https://maps.googleapis.com https://storage.googleapis.com; frame-src 'self' https://storage.googleapis.com; object-src 'none'; upgrade-insecure-requests;">
+
+    <title>Table of Hope</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <img src="logo.png" alt="Table of Hope" class="logo">
+        <div class="header-text">
+            <h1>Table of Hope</h1>
+            <h2>Find Food Near Me</h2>
+        </div>
+        <div class="menu">
+            <button class="menu-button" id="menu-button">☰</button>
+            <div class="menu-options" id="menu-options" style="display: none;">
+                <a href="reservation.html">Reservation</a>
+                <a href="donate-now.html">Donate Now</a>
+                <a href="volunteer.html">Volunteer</a>
+                <a href="maps.html">Map</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="button-container">
+        <button class="button" id="reservation-button">
+            <img src="heart.png" alt="Reservation Icon"> Reservation
+        </button>
+        <button class="button" id="donate-now-button">
+            <img src="money.png" alt="Donate Now Icon"> Donate Now
+        </button>
+        <button class="button" id="volunteer-button">
+            <img src="checklist.png" alt="Volunteer Icon"> Volunteer
+        </button>
+        <button class="button" id="map-button">
+            <img src="map.png" alt="Map Icon"> Map
+        </button>
+    </div>
+
+    <!-- Reservation Form -->
+    <div id="reservation" class="tab-content" style="display: none;">
+        <h1>Reservation</h1>
+        <p>Please fill in the form below to make a reservation for food.</p>
+        <div class="form-container">
+            <form action="submit_reservation.php" method="POST" autocomplete="on">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" autocomplete="name" required placeholder="Enter your full name">
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" autocomplete="email" required placeholder="Enter your email">
+
+                <label for="date">Reservation Date</label>
+                <input type="date" id="date" name="date" autocomplete="bday" required>
+
+                <label for="time">Reservation Time</label>
+                <input type="time" id="time" name="time" autocomplete="off" required>
+
+                <label for="people">Number of People</label>
+                <select id="people" name="people" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5+</option>
+                </select>
+
+                <button type="submit">Submit Reservation</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Map Section -->
+    <div id="map" class="tab-content" style="display: none;">
+        <h1>Map</h1>
+        <p>Find food pantries and soup kitchens near you.</p>
+        <iframe 
+            src="https://storage.googleapis.com/maps-solutions-plhwtgox7c/locator-plus/ttjf/locator-plus.html"
+            style="width: 100%; height: 400px; border: none;" 
+            loading="lazy">
+        </iframe>
+    </div>
+
+    <script src="scripts.js" defer></script>
+</body>
+</html>
