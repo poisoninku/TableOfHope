@@ -4,6 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservation Form</title>
+    <div class="header">
+        <img src="frontend/logo.png" alt="Table of Hope" class="logo">
+        <div class="header-text">
+            <h1>Table of Hope</h1>
+            <h2>Reservation Form</h2>
+        </div>
+        <div class="menu">
+            <button class="menu-button" id="menu-button">☰</button>
+            <div class="menu-options" id="menu-options" style="display: none;">
+                <a href="reservation.html">Reservation</a>
+                <a href="donate-now.html">Donate Now</a>
+                <a href="volunteer.html">Volunteer</a>
+                <a href="maps.html">Map</a>
+            </div>
+        </div>
+    </div>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -53,22 +69,22 @@
 
     <div class="container">
         <h2>Reservation Form</h2>
-        <form action="/submit-reservation" method="POST">
+        <form id="reservation-form" action="/submit-reservation" method="POST">
             <label for="name">Full Name</label>
             <input type="text" id="name" name="name" required placeholder="Enter your full name">
-
+    
             <label for="email">Email Address</label>
             <input type="email" id="email" name="email" required placeholder="Enter your email address">
-
+    
             <label for="phone">Phone Number</label>
             <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
-
+    
             <label for="reservation-date">Reservation Date</label>
             <input type="date" id="reservation-date" name="reservation-date" required>
-
+    
             <label for="time">Reservation Time</label>
             <input type="time" id="time" name="time" required>
-
+    
             <label for="party-size">Party Size</label>
             <select id="party-size" name="party-size" required>
                 <option value="">Select number of people</option>
@@ -79,13 +95,42 @@
                 <option value="5">5</option>
                 <option value="6">6+</option>
             </select>
-
+    
             <label for="special-requests">Special Requests</label>
             <textarea id="special-requests" name="special-requests" placeholder="Any special requests? (optional)"></textarea>
-
+    
             <button type="submit">Submit Reservation</button>
         </form>
+        <div id="form-feedback"></div>
     </div>
-
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("reservation-form");
+    
+            form.addEventListener("submit", function (event) {
+                event.preventDefault(); // Prevents the form from submitting the traditional way
+                
+                // Capture form data
+                const formData = new FormData(form);
+                
+                // Example: If you want to send the form data via AJAX (optional, not mandatory)
+                fetch(form.action, {
+                    method: "POST",
+                    body: formData
+                })
+                .then(response => response.json()) // Assuming the server responds with JSON
+                .then(data => {
+                    // Handle server response here
+                    document.getElementById("form-feedback").innerHTML = "<p>Reservation submitted successfully!</p>";
+                    form.reset(); // Clear the form after submission
+                })
+                .catch(error => {
+                    console.error("Error submitting reservation:", error);
+                    document.getElementById("form-feedback").innerHTML = "<p>There was an error submitting your reservation. Please try again later.</p>";
+                });
+            });
+        });
+    </script>
 </body>
 </html>
