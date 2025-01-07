@@ -22,48 +22,81 @@
     </div>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            padding: 20px;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #364f2a; /* Dark sage green */
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
+    
         .container {
-            background-color: #fff;
+            background-color: #fffbe6; /* Soft white */
             border-radius: 8px;
             padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 50%;
-            margin: auto;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
         }
+    
         h2 {
-            text-align: center;
-            color: #333;
+            color: #364f2a; /* Sage green */
+            margin-bottom: 20px;
         }
+    
         label {
             display: block;
             margin: 10px 0 5px;
-            color: #333;
+            color: #364f2a; /* Sage green */
         }
+    
         input, select, textarea {
             width: 100%;
             padding: 10px;
             margin: 5px 0 15px;
             border: 1px solid #ccc;
             border-radius: 4px;
+            font-size: 1em;
         }
+    
         button {
-            background-color: #4CAF50;
+            background-color: #364f2a;
             color: white;
             padding: 15px 32px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             display: block;
-            margin: auto;
+            margin: 20px auto;
+            font-size: 1.1em;
+            width: 100%;
+            max-width: 320px;
         }
+    
         button:hover {
-            background-color: #45a049;
+            background-color: #2a3d1f; /* Darker sage green */
+        }
+    
+        textarea {
+            resize: vertical;
+        }
+    
+        /* Make form inputs and button responsive */
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+            }
+    
+            button {
+                width: 100%;
+            }
         }
     </style>
+    
 </head>
 <body>
 
