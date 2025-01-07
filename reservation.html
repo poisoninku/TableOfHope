@@ -79,7 +79,7 @@
             color: #364f2a; /* Sage green text */
             display: flex;
             flex-direction: column;
-                }
+        }
     
         h2 {
             color: #364f2a; /* Sage green */
@@ -131,14 +131,12 @@
             }
         }
     </style>
-    
-    
 </head>
 <body>
 
     <div class="container">
         <h2>Reservation Form</h2>
-        <form action="/submit-reservation" method="POST">
+        <form action="/submit-reservation" method="POST" id="reservation-form">
             <label for="name">Full Name</label>
             <input type="text" id="name" name="name" required placeholder="Enter your full name">
     
@@ -171,12 +169,22 @@
             <button type="submit">Submit Reservation</button>
         </form>
     </div>
-    
-    
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            const menuButton = document.getElementById("menu-button");
+            const menuOptions = document.getElementById("menu-options");
+
+            menuButton.addEventListener("click", function () {
+                if (menuOptions.style.display === "none" || menuOptions.style.display === "") {
+                    menuOptions.style.display = "block";
+                } else {
+                    menuOptions.style.display = "none";
+                }
+            });
+
             const form = document.getElementById("reservation-form");
-    
+
             form.addEventListener("submit", function (event) {
                 event.preventDefault(); // Prevents the form from submitting the traditional way
                 
