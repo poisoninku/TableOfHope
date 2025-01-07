@@ -33,6 +33,40 @@
             align-items: center;
         }
     
+        .header {
+            background-color: #2a3d1f; /* Darker green for header */
+            padding: 20px 0;
+            width: 100%;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+    
+        .logo {
+            width: 150px;
+            height: 150px;
+        }
+    
+        .header-text {
+            flex: 2;
+            text-align: center;
+        }
+    
+        .header h1 {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #fffbe6; /* Soft white */
+            margin: 0;
+        }
+    
+        .header h2 {
+            font-size: 1.2em;
+            color: #d1d1d1;
+            margin-top: 8px;
+        }
+    
         .container {
             background-color: #fffbe6; /* Soft white */
             border-radius: 8px;
@@ -41,11 +75,13 @@
             margin: 20px 0;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: left;
+            color: #364f2a; /* Sage green text */
         }
     
         h2 {
             color: #364f2a; /* Sage green */
             margin-bottom: 20px;
+            text-align: center;
         }
     
         label {
@@ -81,10 +117,6 @@
             background-color: #2a3d1f; /* Darker sage green */
         }
     
-        textarea {
-            resize: vertical;
-        }
-    
         /* Make form inputs and button responsive */
         @media (max-width: 600px) {
             .container {
@@ -97,12 +129,13 @@
         }
     </style>
     
+    
 </head>
 <body>
 
     <div class="container">
         <h2>Reservation Form</h2>
-        <form id="reservation-form" action="/submit-reservation" method="POST">
+        <form action="/submit-reservation" method="POST">
             <label for="name">Full Name</label>
             <input type="text" id="name" name="name" required placeholder="Enter your full name">
     
@@ -113,10 +146,10 @@
             <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
     
             <label for="reservation-date">Reservation Date</label>
-            <input type="date" id="reservation-date" name="reservation-date" required>
+            <input type="date" id="reservation-date" name="reservation-date" required placeholder="mm/dd/yyyy">
     
             <label for="time">Reservation Time</label>
-            <input type="time" id="time" name="time" required>
+            <input type="time" id="time" name="time" required placeholder="--:-- --">
     
             <label for="party-size">Party Size</label>
             <select id="party-size" name="party-size" required>
@@ -134,8 +167,8 @@
     
             <button type="submit">Submit Reservation</button>
         </form>
-        <div id="form-feedback"></div>
     </div>
+    
     
     <script>
         document.addEventListener("DOMContentLoaded", function () {
